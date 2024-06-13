@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کافی شاپ</title>
+</head>
+<body>
+    {% load static %}
+
+<div class="navbar">
+    <ul>
+        <li>
+            <a href="#"><i class="fas fa-bars"></i>منو</a>
+            <div class="dropdown">
+                <a href="#mostsale">محصولات پرفروش</a>
+                <a href="#coldc">نوشیدنی سرد</a>
+                <a href="#hotc">نوشیدنی گرم</a>
+                <a href="#cake">کیک</a>
+            </div>
+        </li>
+        <li><a href='{% url "index" %}'><i class="fas fa-home"></i>خانه</a></li>
+        <li><a href="#"><i class="fas fa-shopping-cart"></i> سبد خرید</a></li>
+        <li><a href="#"><i class="fas fa-history"></i> سوابق خرید</a></li>
+        {% if user.is_authenticated %}
+            <li><i class="fas fa-user"></i>     {{user}} </a></li>
+            <li><a href='{% url "logout" %}'><i class="fa-solid fa-arrow-right-from-bracket"></i>خروج</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}"><i class="fas fa-user"></i> ورود به حساب کاربری</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+
+{% block content %}
+    
+{% endblock content %}
+    
+
+
+<div class="footer">
+    <p> تمامی حقوق برای کافی شاپ مشترک صداقتی و دوستان محفوظ است&copy; 2024</p>
+</div>
+    <link rel="stylesheet" href="{% static 'css/homePage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src='{% static "js/homePage.js "%}'></script>
+</body>
+</html>

@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-</head>
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+    
 <body>
     <div class="login-container">
-        <form class="login-form">
+        <form class="login-form", method="POST">
             {% csrf_token %}
             <h2>ورود</h2>
             <div class="form-group">
@@ -22,12 +21,14 @@
                 <a href="#">رمز خود را فراموش کرده اید؟</a>
             </div>
             <div class="sign-up">
-                <p>حساب کاربری ندارید؟ <a href="{% url 'signup' %}">ثبت نام</a></p>
+                <p>حساب کاربری ندارید؟ <a href="">ثبت نام</a></p>
             </div>
         </form>
     </div>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/login.css'%}">
     <script src="{% static 'js/login.js' %}" defer></script>
+    
 </body>
-</html>
+
+{% endblock content %}
