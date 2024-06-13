@@ -1,0 +1,132 @@
+@font-face {
+    font-family: casablanca;
+    src: url(fonts/Far_Casablanca\ Heavy.ttf);
+}
+
+body {
+    font-family: casablanca;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    background: linear-gradient(225deg, #c3a282,#e4d7cc);
+
+}
+.navbar {
+    position: fixed; /* Fixed position to follow scrolling */
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(10deg, #59310b, #84664a);
+    color: white;
+    padding: 30px;
+    font-size: 20px;
+    z-index: 1;
+}
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.navbar ul li {
+    margin: 0 50px;
+    position: relative;
+}
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+}
+.navbar ul li:hover .dropdown {
+    display: block;
+}
+.navbar ul li a i {
+    margin-left: 10px; /* فاصله بین آیکون و متن */
+}
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 90%;
+    left: 1;
+    background-color: #59310b;
+    min-width: 170px;
+    z-index: 2;
+}
+.dropdown a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+.dropdown a:hover {
+    background-color: #84664a;
+}
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+    margin-top: 50px; /* Margin to avoid overlap with fixed navbar */
+}
+.slider {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+}
+
+.slider img {
+    width: 100%;
+    height: 800px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slider img.active {
+    opacity: 1;
+    visibility: visible;
+}.slider-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+.slider-buttons button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+.product-section {
+    padding: 70px;
+    text-align: center;
+}
+.product-section h2 {
+    font-size: 70px;
+    text-align: right;
+    margin-bottom: 60px;
+}
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+.product-grid img {
+    border-radius: 90px;
+    width: 20%;
+    height: auto;
+}
+.footer {
+    background: linear-gradient(10deg, #59310b, #84664a);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
