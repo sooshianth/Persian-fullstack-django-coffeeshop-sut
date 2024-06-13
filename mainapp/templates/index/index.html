@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>کافی شاپ</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    {% load static %}
 
 <div class="navbar">
     <ul>
@@ -29,11 +29,11 @@
 
 <div class="slider-container">
     <div class="slider">
-        <img src="dynamics/image1.jpg" alt="تصویر 1">
-        <img src="dynamics/image2.jpg" alt="تصویر 2">
-        <img src="dynamics/image3.jpg" alt="تصویر 3">
-        <img src="dynamics/image4.jpg" alt="تصویر 4">
-        <img src="dynamics/image5.jpg" alt="تصویر 5">
+        <img src='{% static "dynamics/image1.jpg" %}' alt="تصویر 1">
+        <img src='{% static "dynamics/image2.jpg" %}' alt="تصویر 2">
+        <img src='{% static "dynamics/image3.jpg" %}' alt="تصویر 3">
+        <img src='{% static "dynamics/image4.jpg" %}' alt="تصویر 4">
+        <img src='{% static "dynamics/image5.jpg" %}' alt="تصویر 5">
         <div class="slider-buttons">
             <button onclick="prevSlide()">&#10094;</button>
             <button onclick="nextSlide()">&#10095;</button>
@@ -92,8 +92,8 @@
 <div class="footer">
     <p> تمامی حقوق برای کافی شاپ مشترک صداقتی و دوستان محفوظ است&copy; 2024</p>
 </div>
-<link rel="stylesheet" href="homePage.css">
+<link rel="stylesheet" href="{% static 'css/homePage.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<script src="homePage.js"></script>
+<script src='{% static "js/homePage.js "%}'></script>
 </body>
 </html>

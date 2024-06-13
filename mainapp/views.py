@@ -1,47 +1,50 @@
 # views.py
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.contrib import messages
+# from django.contrib import messages
+# from .forms import SignUpForm, LogInForm
+from django.views.generic.edit import CreateView
+from .models import Customer
 
-def signup_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        first_name = request.POST['first-name']
-        last_name = request.POST['last-name']
-        email = request.POST['email']
-        password = request.POST['password']
+def homepage(request):
+    return render(request, 'index/index.html', {})
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'نام کاربری قبلاً گرفته شده است.')
-            return redirect('signup')
+# def signup(request):
+#     if request.method == 'POST':
+#         form = SignUpForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             raw_password = form.cleaned_data.get('password')
+#             user = authenticate(username=username, password=raw_password)
+#             login(request, user)
+#             return redirect('home')  # Redirect to a home page or a dashboard after successful signup
+#     else:
+#         form = SignUpForm()
+#     return render(request, 'signup.html', {'form': form})
 
-        user = User.objects.create_user(
-            username=username,
-            first_name=first_name,
-            last_name=last_name,
-            email=email,
-            password=password
-        )
-        user.save()
-        messages.success(request, 'ثبت نام با موفقیت انجام شد.')
-        return redirect('login')
+class SignUpView(CreateView):
+    model = Customer
+    template_name= "signup.html"
+    fields = ['user', 'first_name', 'last_name', 'phone_number', 'password']
 
-    return render(request, '/signup/signup.html')
 
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('/')
-        else:
-            messages.error(request, 'نام کاربری یا رمز عبور اشتباه است.')
+# def login(request):
+#     if request.method == 'POST':
+#         form = LogInForm(request, data=request.POST)
+#         if form.is_valid():
+#             user = form.cleaned_data.get('user')
+#             password = form.cleaned_data.get('password')
+#             user = authenticate(request, username=user, password=password)
+#             if user is not None:
+#                 login(request, user)
+#                 return redirect('home')  # Redirect to a home page or a dashboard after successful login
+#     else:
+#         form = LogInForm()
+#     return render(request, 'login.html', {'form': form})
 
-    return render(request, 'login/login.html')
-
-def logout_view(request):
-    logout(request)
-    return redirect('login/login.html')
+# def logout_view(request):
+#     logout(request)
+#     return redirect('login/login.html')
