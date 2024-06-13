@@ -1,10 +1,17 @@
 from django.contrib import admin
-from .models import CustomerAccount, Storage
+from .models import Product, RawMaterial, ProductRawMaterial
 
-@admin.register(CustomerAccount)
-class AdminCustomerAccount(admin.ModelAdmin):
-    list_display = ['pk', 'user', 'first_name', 'last_name', 'datetime_signed_up']
+class ProductRawMaterialInline(admin.TabularInline):
+    model = ProductRawMaterial
+    extra = 1
 
-@admin.register(Storage)
-class AdminStorage(admin.ModelAdmin):
-    list_display = ['pk', 'name', 'amount']
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['name', 'price']
+    inlines = (ProductRawMaterialInline,)
+
+class RawMaterialAdmin(admin.ModelAdmin):
+    list_display = ['name', 'stock']
+
+
+admin.site.register(Product, ProductAdmin)
+admin.site.register(RawMaterial)
