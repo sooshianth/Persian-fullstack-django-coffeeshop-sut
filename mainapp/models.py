@@ -33,7 +33,7 @@ class ProductRawMaterial(models.Model):
         return f"{self.quantity} of {self.raw_material.name} for {self.product.name}"
 
 
-class CustomerAccount(models.Model):
+class Customer(models.Model):
     user = models.CharField(max_length=255) # either user or email
     password = models.CharField(max_length=255, validators=[validators.RegexValidator(r'^[0-9a-zA-Z ]+$')])
     first_name = models.CharField(max_length=255)
@@ -46,7 +46,7 @@ class CustomerAccount(models.Model):
         return self.user
 
 class Order(models.Model):
-    customer = models.ForeignKey(CustomerAccount, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product, through='OrderProduct')
     order_date = models.DateTimeField(auto_now_add=True)
 
@@ -61,3 +61,10 @@ class OrderProduct(models.Model):
 
     def __str__(self) -> str:
         return f"{self.quantity} of {self.product.name} for {self.order.customer}"
+
+class CustomerOrder(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return str(self.pk)
