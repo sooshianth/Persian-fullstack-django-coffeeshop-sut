@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Product, RawMaterial, ProductRawMaterial, Order, OrderProduct, Customer, CustomerOrder
+from .models import Product, Storage, ProductStorage, Order, OrderProduct, Customer, CustomerOrder
 
-class ProductRawMaterialInline(admin.TabularInline):
-    model = ProductRawMaterial
+class ProductStorageInline(admin.TabularInline):
+    model = ProductStorage
     extra = 1
 
 class OrderProductInline(admin.TabularInline):
@@ -23,13 +23,13 @@ class OrderAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'price']
-    inlines = (ProductRawMaterialInline,)
+    inlines = (ProductStorageInline,)
 
-class RawMaterialAdmin(admin.ModelAdmin):
+class StorageAdmin(admin.ModelAdmin):
     list_display = ['name', 'stock']
 
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Order, OrderAdmin)
-admin.site.register(RawMaterial)
+admin.site.register(Storage)
 admin.site.register(Customer, CustomerAdmin)
