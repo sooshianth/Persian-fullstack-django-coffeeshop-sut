@@ -14,7 +14,7 @@ class CustomerOrderInline(admin.TabularInline):
     extra = 1
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['user', 'first_name', 'last_name', 'datetime_signed_up']
+    list_display = ['email', 'first_name', 'last_name', 'datetime_signed_up']
     inlines = (CustomerOrderInline,)
 
 class OrderAdmin(admin.ModelAdmin):

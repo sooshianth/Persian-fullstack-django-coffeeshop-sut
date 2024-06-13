@@ -1,5 +1,7 @@
 from django.db import models
-from django.core import validators    
+from django.core import validators
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.utils.translation import gettext as _
 
 class Storage(models.Model):
     name = models.CharField(max_length=100)
@@ -33,19 +35,38 @@ class ProductStorage(models.Model):
     def __str__(self):
         return f"{self.quantity} of {self.raw_materials.name} for {self.product.name}"
 
+class CustomerManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError("The Email field must be set")
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-class Customer(models.Model):
-    user = models.CharField(max_length=255) # either user or email
-    password = models.CharField(max_length=255, validators=[validators.RegexValidator(r'^[0-9a-zA-Z ]+$')])
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(email, password, **extra_fields)
+
+class Customer(AbstractBaseUser):
+    email = models.EmailField(_("ایمیل"), max_length=255, unique=True) # either user or email
+    password = models.CharField(_("رمز عبور") ,max_length=255, validators=[validators.RegexValidator(r'^[0-9a-zA-Z ]+$')])
+    first_name = models.CharField(_("نام") ,max_length=255)
+    last_name = models.CharField(_("نام خانوادگی"),max_length=255)
     datetime_signed_up = models.DateTimeField(auto_now_add=True)
-    phone_number = models.IntegerField(max_length=11, blank=True, null=True)
-    current_cart = []
-    all_products_ever = []
+    phone_number = models.CharField(_("شماره همراه"),max_length=11, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    
+    objects = CustomerManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'password']
 
     def __str__(self):
-        return self.user
+        return self.email
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
