@@ -1,6 +1,6 @@
 from django.db import models
 from django.core import validators
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import gettext as _
 
 class Storage(models.Model):
@@ -50,15 +50,15 @@ class CustomerManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(email, password, **extra_fields)
 
-class Customer(AbstractBaseUser):
+class Customer(AbstractUser):
     email = models.EmailField(_("ایمیل"), max_length=255, unique=True) # either user or email
-    password = models.CharField(_("رمز عبور") ,max_length=255, validators=[validators.RegexValidator(r'^[0-9a-zA-Z ]+$')])
     first_name = models.CharField(_("نام") ,max_length=255)
     last_name = models.CharField(_("نام خانوادگی"),max_length=255)
     datetime_signed_up = models.DateTimeField(auto_now_add=True)
     phone_number = models.CharField(_("شماره همراه"),max_length=11, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
     
     objects = CustomerManager()
 

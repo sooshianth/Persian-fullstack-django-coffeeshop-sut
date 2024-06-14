@@ -19,12 +19,10 @@ from mainapp import views
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from mainapp.views import RegisterView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/register/', RegisterView.as_view(), name='register'),
     path('', include('mainapp.urls'), name='index'),
 ]
 

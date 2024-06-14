@@ -1,22 +1,17 @@
 from django import forms
-from django.utils.translation import gettext as _
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from .models import Customer
 # from django.contrib.auth.models import User
-# from django.contrib.auth.forms import AuthenticationForm
-# from .models import Customer
 
-class LogInForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+class CustomerRegisterForm(UserCreationForm):
 
+    class Meta(UserCreationForm):
+        model = Customer
+        fields = UserCreationForm.Meta.fields + ('first_name','last_name','phone_number')
 
-class MakeOrderForm(forms.Form):
-    pass
+class CustomerChangeForm(UserChangeForm):
 
-
-class AddProductForm(forms.Form):
-    pass
-
-
-class AddMaterialForm(forms.Form):
-    pass
+    class Meta:
+        model = Customer
+        fields = UserChangeForm.Meta.fields
 

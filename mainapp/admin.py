@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .forms import CustomerChangeForm, CustomerRegisterForm
 from .models import Product, Storage, ProductStorage, Order, OrderProduct, Customer, CustomerOrder
 
 class ProductStorageInline(admin.TabularInline):
@@ -13,10 +15,13 @@ class CustomerOrderInline(admin.TabularInline):
     model = CustomerOrder
     extra = 1
 
-class CustomerAdmin(admin.ModelAdmin):
+class CustomerAdmin(UserAdmin):
     list_display = ['email', 'first_name', 'last_name', 'datetime_signed_up']
     inlines = (CustomerOrderInline,)
-
+    add_form = CustomerRegisterForm
+    form = CustomerChangeForm
+    model = Customer
+    
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['pk', 'customer', 'order_date']
     inlines = (OrderProductInline,)
