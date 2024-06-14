@@ -1,6 +1,6 @@
 @font-face {
     font-family: casablanca;
-    src: url(fonts/Far_Casablanca\ Heavy.ttf);
+    src: '{% static "fonts/Far_CasablancaHeavy.ttf" %}';
 }
 
 body {

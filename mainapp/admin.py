@@ -21,6 +21,12 @@ class CustomerAdmin(UserAdmin):
     add_form = CustomerRegisterForm
     form = CustomerChangeForm
     model = Customer
+    fieldsets = UserAdmin.fieldsets + (
+        (None, {'fields':('phone_number',)}),
+)
+    add_fieldsets = UserAdmin.fieldsets + (
+        (None, {'fields': ('phone_number',)}),
+)
     
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['pk', 'customer', 'order_date']

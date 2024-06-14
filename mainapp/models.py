@@ -66,7 +66,7 @@ class Customer(AbstractUser):
     REQUIRED_FIELDS = ['first_name', 'last_name', 'password']
 
     def __str__(self):
-        return self.email
+        return self.first_name
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
