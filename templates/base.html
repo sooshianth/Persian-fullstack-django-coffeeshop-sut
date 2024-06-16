@@ -24,7 +24,10 @@
         <li><a href="#"><i class="fas fa-history"></i> سوابق خرید</a></li>
         {% if user.is_authenticated %}
             <li><i class="fas fa-user"></i>     {{user}} </a></li>
-            <li><a href='{% url "logout" %}'><i class="fa-solid fa-arrow-right-from-bracket"></i>خروج</a></li>
+            <li><i class="fa-solid fa-arrow-right-from-bracket"><form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="navbar" type="submit">خروج</button>
+            </form></i>
         {% else %}
             <li><a href="{% url 'login' %}"><i class="fas fa-user"></i> ورود به حساب کاربری</a></li>
         {% endif %}

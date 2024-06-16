@@ -1,36 +1,41 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .forms import MemberChangeForm, MemberRegisterForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from mainapp.admin import CustomerOrderInline
 from .models import Member
+
+
+class MemberCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Member
+        fields = ('username', 'first_name', 'last_name')
+
+class MemberChangeForm(UserChangeForm):
+    class Meta:
+        model = Member
+        fields = ('username', 'first_name', 'last_name', 'is_active', 'is_staff',)
+
 
 class MemberAdmin(UserAdmin):
     list_display = ['username', 'first_name', 'last_name', 'created_date']
     inlines = (CustomerOrderInline,)
-    add_form = MemberRegisterForm
+    add_form = MemberCreationForm
     form = MemberChangeForm
     model = Member
     search_fields = ['username', 'first_name', 'last_name']
     ordering = ['username']
-    fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields':('phone_number',)}),
-)
-    add_fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('phone_number',)}),
-)
+
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
-        ('Important dates', {'fields': ('last_login', 'datetime_signed_up')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'phone_number')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Important dates', {'fields': ()}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'password1',),
-        }),
+            'fields': ('username', 'first_name', 'last_name', 'password1', 'is_staff', 'is_active')}
+        ),
     )
-    list_filter = ['is_staff', 'is_superuser', 'is_active']
-    filter_horizontal = ()
 
 admin.site.register(Member, MemberAdmin)
