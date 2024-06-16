@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Tirmo\Desktop\Project AP\myvenv"
+VIRTUAL_ENV="C:\Users\Tirmo\Desktop\ProjectAP\myvenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
