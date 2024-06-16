@@ -19,7 +19,7 @@ class MemberAdmin(UserAdmin):
         (None, {'fields': ('phone_number',)}),
 )
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('username', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
         ('Important dates', {'fields': ('last_login', 'datetime_signed_up')}),
@@ -27,7 +27,7 @@ class MemberAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2'),
+            'fields': ('username', 'password1',),
         }),
     )
     list_filter = ['is_staff', 'is_superuser', 'is_active']

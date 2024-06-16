@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, User
 from django.utils.translation import gettext as _
 
 
@@ -36,17 +36,20 @@ class MemberManager(BaseUserManager):
 
 
 class Member(AbstractBaseUser):
-    username = models.EmailField(_("نام کاربری یا ایمیل"), max_length=255, unique=True) # either user or email
+    username = models.CharField(_("نام کاربری یا ایمیل"), max_length=255, unique=True, primary_key=True) # either user or email
     first_name = models.CharField(_("نام") ,max_length=255)
     last_name = models.CharField(_("نام خانوادگی"),max_length=255)
     phone_number = models.CharField(_("شماره همراه"),max_length=12, blank=True, null=True)
-    created_date = models.DateTimeField(auto_now_add=True)
-    last_login = models.DateTimeField(auto_now_add=True)
-    modified_date = models.DateTimeField(auto_now=True)
+    created_date = models.DateTimeField(auto_now_add=True, null=True)
+    last_login = models.DateTimeField(auto_now_add=True, null=True)
+    modified_date = models.DateTimeField(auto_now=True, null=True)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    has_module_perms = User.has_module_perms
+    user_permissions = User.user_permissions
+
     
     objects = MemberManager()
 
@@ -55,5 +58,5 @@ class Member(AbstractBaseUser):
 
     def __str__(self):
         return self.first_name
-    def has_perm(self, perm, obj=None):
+    def has_perm(self, user_, obj=None):
         return self.is_admin
