@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نمودار فروش</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/management_panel.css'%}">
+</head>
+<body>
+    <div class="left-panel">
+        <h1>نمودار فروش</h1>
+        <div>
+            <!-- Buttons to switch between charts -->
+            {% for product_name in sales_data.keys %}
+                <button onclick="showChart({{ forloop.counter0 }})">{{ product_name }}</button>
+            {% endfor %}
+        </div>
+        <div>
+            <!-- Chart containers -->
+            {% for product_name, data in sales_data.items %}
+                <div class="chart-container" id="chart-container-{{ forloop.counter0 }}">
+                    <h2>{{ product_name }}</h2>
+                    <canvas id="chart-{{ forloop.counter0 }}" width="250" height="100"></canvas>
+                </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const ctx{{ forloop.counter0 }} = document.getElementById('chart-{{ forloop.counter0 }}').getContext('2d');
+                        const gradient{{ forloop.counter0 }} = ctx{{ forloop.counter0 }}.createLinearGradient(0, 0, 0, 400);
+                        gradient{{ forloop.counter0 }}.addColorStop(1, 'rgba(75, 30, 1, 1)');
+                        gradient{{ forloop.counter0 }}.addColorStop(0, 'rgba(160, 70, 20, 1)');
+                        const chart{{ forloop.counter0 }} = new Chart(ctx{{ forloop.counter0 }}, {
+                            type: 'bar',
+                            data: {
+                                labels: {{ data.labels|safe }},
+                                datasets: [{
+                                    label: 'فروش',
+                                    data: {{ data.data|safe }},
+                                    backgroundColor: gradient{{ forloop.counter0 }},
+                                    borderColor: 'rgba(77, 30, 1, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    });
+                </script>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="right-panel">
+        <h2>منوی ناوبری</h2>
+        <ul class="menu">
+            <li><a href="{% url 'create_product' %}">افزودن محصول</a></li>
+            <li><a href="{% url 'select_storage' %}">انبار</a></li>
+            <li><a href="{% url 'store' %}?from_admin=true">محصولات</a></li>
+            {% comment %} <li><a href="/customers">Customers</a></li>
+            <li><a href="/reports">Reports</a></li> {% endcomment %}
+        </ul>
+    </div>
+
+    <script>
+        // Show the first chart by default
+        document.addEventListener("DOMContentLoaded", function() {
+            showChart(0);
+        });
+
+        function showChart(index) {
+            const containers = document.querySelectorAll('.chart-container');
+            containers.forEach((container, i) => {
+                container.classList.remove('active');
+                if (i === index) {
+                    container.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+{% endblock content %}

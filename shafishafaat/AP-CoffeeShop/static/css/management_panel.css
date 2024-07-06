@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.left-panel {
+    background-color: #ffd3ae;
+    width: 85%;
+    padding: 20px;
+}
+.right-panel {
+    width: 15%;
+    padding: 20px;
+    background-color: #cfa677;
+}
+.chart-container {
+    display: none;
+}
+.chart-container.active {
+    display: block;
+}
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+.menu {
+    list-style-type: none;
+    padding: 0;
+}
+.menu li {
+    margin: 10px 0;
+}
+.menu a {
+    font-size: 30px;
+    text-decoration: none;
+    color: #704d0c;
+    font-weight: bold;
+    transition: 0.3s ease;
+
+}
+.menu a:hover {
+    color: #f1e1d2;
+}

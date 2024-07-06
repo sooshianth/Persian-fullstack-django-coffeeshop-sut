@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کافی شاپ</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/homePage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li>
+                <a id='menu' href="#"><i class="fas fa-bars" id='menu-svg'></i>منو</a>
+                <div class="dropdown">
+                    <a href="{% url 'store' %}?category=cold_drinks">نوشیدنی سرد</a>
+                    <a href="{% url 'store' %}?category=hot_drinks">نوشیدنی گرم</a>
+                    <a href="{% url 'store' %}?category=cakes">کیک</a>
+                    <a href="{% url 'store' %}?category=breakfast">صبحانه</a>
+                </div>
+            </li>
+            <li><a id='home-button' href='{% url "index" %}'><i class="fas fa-home"></i>خانه</a></li>
+            <li><a id='cart' href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i> سبد خرید</a></li>
+            <li><a id='his'href="{% url 'order_history' %}"><i class="fas fa-history"></i> سوابق خرید</a></li>
+            {% if user.is_authenticated and user.is_staff %}
+                <li><a id='enter-ac' href="{% url 'management_panel' %}"><i class="fa-solid fa-gear"></i>پنل مدیریت</a></li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <li><i class="fas fa-user"></i> {{ user }} </a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="logout-button" type="submit"><i class="fa-solid fa-arrow-right-from-bracket"></i> خروج</button>
+                    </form>
+                    <style>
+                        .logout-button {
+                            background: none;
+                            border: none;
+                            color: white;
+                            font-size: 20px;
+                            cursor: pointer;
+                            padding: 0;
+                            margin: 0;
+                            display: flex;
+                            align-items: center;
+                            transition: color 0.3s ease;
+
+                        }
+                        .logout-button i {
+                            margin-left: 5px;
+
+                        }
+                        .logout-button:hover {
+                            color: #84664a;
+                        }
+                            </style>
+                </li>
+            {% else %}
+                <li><a id='enter-ac' href="{% url 'login' %}"><i class="fas fa-user"></i> ورود به حساب کاربری</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    {% block content %}
+    {% endblock content %}
+
+    <script src='{% static "js/homePage.js" %}'></script>
+</body>
+</html>

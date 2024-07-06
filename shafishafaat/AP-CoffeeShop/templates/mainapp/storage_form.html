@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انبارداری</title>
+    <link rel="stylesheet" href="{% static 'css/update_storage.css' %}">
+</head>
+<body>
+<div class="content">
+    <h1>بروزرسانی انبار</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="sub">
+            {{form.stock}}
+            <span>:موجودی در انبار</span>
+            <br>
+        </div>
+        <div class="sub">
+            {{form.name}}
+            <span id="span1">:ماده اولیه</span>
+            <br>
+        </div>
+</div>
+        <input type="submit" value="بروزرسانی">
+    </form>
+<script>
+    var formNameValue = "{{ form.name.value }}"; 
+    if (formNameValue === "شکر") { 
+        document.body.style.backgroundImage = "url('{% static "images/sugar.avif" %}')"; 
+    } else if (formNameValue === "شیر") { 
+        document.body.style.backgroundImage = "url('{% static "images/milk.jpg" %}')"; 
+    } else if (formNameValue === "قهوه") { 
+        document.body.style.backgroundImage = "url('{% static "images/coffee.avif" %}')"; 
+    } else if (formNameValue === "شکلات") { 
+        document.body.style.backgroundImage = "url('{% static "images/chocolate.avif" %}')"; 
+    } else if (formNameValue === "آرد") { 
+        document.body.style.backgroundImage = "url('{% static "images/flour.avif" %}')"; 
+    } else if (formNameValue === "تخم مرغ") { 
+        document.body.style.backgroundImage = "url('{% static "images/egg.webp" %}')"; 
+    } else if (formNameValue === "نان") { 
+        document.body.style.backgroundImage = "url('{% static "images/bread.jpg" %}')"; 
+    }
+
+</script>
+
+</body>
+</html>

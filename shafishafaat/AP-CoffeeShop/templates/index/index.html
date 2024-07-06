@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="slider-container">
+    <div class="slider">
+        <img src='{% static "dynamics/image1.jpg" %}' alt="تصویر 1">
+        <img src='{% static "dynamics/image2.jpg" %}' alt="تصویر 2">
+        <img src='{% static "dynamics/image3.jpg" %}' alt="تصویر 3">
+        <img src='{% static "dynamics/image4.jpg" %}' alt="تصویر 4">
+        <img src='{% static "dynamics/image5.jpg" %}' alt="تصویر 5">
+        <div class="slider-buttons">
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+</div>
+
+<h1>محصولات پرفروش</h1>
+<div class="best-selling-products">
+    {% for product in products %}
+    <div class="product-card">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.price }} تومان</p>
+        <p>{{ product.description }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    h1 {
+        text-align: center;
+        margin: 20px 0;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .best-selling-products {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .product-card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        width: 220px;
+        transition: transform 0.2s;
+    }
+
+    .product-card img {
+        border-radius: 10px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .product-card h3 {
+        color: #333;
+    }
+
+    .product-card p {
+        color: #666;
+    }
+
+    .product-card:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="footer">
+    <p>All rights reserved for Tyrmo.co and the posse! &copy; 2024</p>
+</div>
+
+{% endblock content %}

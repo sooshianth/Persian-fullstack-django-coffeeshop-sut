@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../images/record_background.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    color: #333;
+}
+
+.order-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.8); /* رنگ پس‌زمینه با شفافیت */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* سایه */
+}
+
+.order {
+    border: 1px solid rgba(0, 0, 0, 0.1); /* حاشیه نرم با شفافیت */
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* رنگ پس‌زمینه با شفافیت بیشتر */
+    backdrop-filter: blur(10px); /* افکت شیشه‌ای با پراکندگی */
+    border-radius: 10px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.order-number {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.order-date {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.products-list {
+    padding-left: 20px;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9); /* رنگ پس‌زمینه با شفافیت بیشتر */
+    backdrop-filter: blur(10px); /* افکت شیشه‌ای با پراکندگی */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* حاشیه نرم با شفافیت */
+    border-radius: 8px;
+}
+
+.product-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.product-price {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.total-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}

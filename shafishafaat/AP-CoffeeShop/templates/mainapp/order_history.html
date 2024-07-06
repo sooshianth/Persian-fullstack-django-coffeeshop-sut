@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/order_history.css' %}">
+<div class="order-container">
+    <h1>سوابق خرید</h1>
+    {% if orders %}
+        {% for order in orders %}
+        <div class="order">
+            <div class="order-header">
+                <span class="order-number">شماره سفارش: {{ order.order_number }}</span>
+                <span class="order-date">تاریخ سفارش: {{ order.order_date }}</span>
+            </div>
+            <div class="products-list">
+                {% for product in order.products %}
+                <div class="product">
+                    <img class="product-image" src="{{ product.image_url }}" alt="{{ product.product_name }}">
+                    <div class="product-details">
+                        <p class="product-name">{{ product.product_name }}</p>
+                        <p>تعداد: {{ product.quantity }}</p>
+                        <p class="product-price">قیمت واحد: {{ product.price_per_unit }} تومان</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <hr>
+            <p class="total-price">قیمت کل: {{ order.total_price }} تومان</p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-orders">هیچ سفارشی یافت نشد.</div>
+    {% endif %}
+</div>
+{% endblock %}

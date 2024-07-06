@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+    
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انبارداری</title>
+    <link rel="stylesheet" href="{% static 'css/select_storage.css'%}">
+</head>
+<body>
+<div class="content">
+    <h1>ماده‌ اولیه‌ی مورد نظر را جهت بروزرسانی انبار انتخاب کنید</h1>
+    <form>
+        <select name="storage" id="storageSelect">
+            <option value="">انتخاب کنید</option>
+            {% for storage in storages %}
+                <option value="{{ storage.pk }}">{{ storage.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="button" onclick="redirectToUpdate()">تایید</button>
+    </form>
+</div>  
+    <script>
+        function redirectToUpdate() {
+            var select = document.getElementById("storageSelect");
+            var pk = select.options[select.selectedIndex].value;
+            if (pk) {
+                window.location.href = "{% url 'update_storage' 0 %}".replace('0', pk);
+            }
+        }
+    </script>
+</body>
+</html>
+
+{% endblock content %}

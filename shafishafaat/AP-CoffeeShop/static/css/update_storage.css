@@ -1,0 +1,70 @@
+@font-face {
+    font-family: Vazirmatn;
+    src: url(../fonts/fonts/ttf/Vazirmatn-Medium.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+* {
+    font-family: Vazirmatn;
+} 
+body{
+  background-position: center;
+  background-size:100% 100%;
+  background-repeat: no-repeat;
+}
+.content {
+  text-shadow: -1px -1px 0 #693e02,  
+  1px -1px 3px #693e02,  
+ -1px 1px 3px #693e02,  
+  1px 1px 3px #693e02;
+  color: #e4d7cc;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+  font-size:20px;
+}
+h1 {
+  text-shadow: -1px -1px 0 #000,  
+  1px -1px 3px #000,  
+ -1px 1px 3px #000,  
+  1px 1px 3px #000;
+  direction: rtl;
+  font-size:44px;
+}
+
+form{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+input[type="submit"] {
+  background-color: #e4d7cc;
+  color: black;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  margin-left: 46%;
+  margin-top:17px;
+}
+
+input[type="submit"]:hover {
+  background-color: white; 
+}
+span{
+  font-size:20px;
+}
+.sub{
+  margin-left:20px;
+}
+.form-group input[type="text"]{
+  text-align: left;
+  direction: ltr;
+  margin-top:10px;
+  margin-bottom:10px;
+}

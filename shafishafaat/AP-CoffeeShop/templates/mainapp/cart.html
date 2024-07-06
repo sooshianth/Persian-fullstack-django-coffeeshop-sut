@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+<h1>سبد خرید</h1>
+<div class="cart-container">
+    {% if not empty_cart %}
+        <div class="cart-items">
+            {% for order_product in order_products %}
+                <div class="cart-item">
+                    <img src="{{ order_product.product.image.url }}" alt="{{ order_product.product.name }}">
+                    <div class="product-details">
+                        <p>{{ order_product.product.name }}</p>
+                        <p>قیمت واحد: {{ order_product.product.price }} تومان</p>
+                        <form action="{% url 'update_quantity' order_product.product.id %}" method="post" class="quantity-form">
+                            {% csrf_token %}
+                            <label for="quantity-{{ order_product.product.id }}">تعداد: </label>
+                            <input type="number" name="quantity" id="quantity-{{ order_product.product.id }}" value="{{ order_product.quantity }}" min="1" class="quantity-input">
+                        </form>
+                    </div>
+                    <a href="{% url 'remove_from_cart' order_product.product.id %}" class="remove-btn">حذف</a>
+                </div>
+            {% endfor %}
+        </div>
+        <p class="total-cost">هزینه کل: {{ total_cost }} تومان</p>
+        <form action="{% url 'finalize_order' %}" method="post" class="finalize-order-form">
+            {% csrf_token %}
+            <button type="submit">نهایی کردن خرید</button>
+        </form>
+    {% else %}
+        <p class="empty-cart-message">محصولی در سبد خرید شما وجود ندارد.</p>
+    {% endif %}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const quantityInputs = document.querySelectorAll('.quantity-input');
+
+        quantityInputs.forEach(input => {
+            input.addEventListener('change', function () {
+                this.form.submit();
+            });
+        });
+    });
+</script>
+{% endblock %}
