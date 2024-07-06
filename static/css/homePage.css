@@ -1,18 +1,22 @@
 @font-face {
-    font-family: casablanca;
-    src: '{% static "fonts/Far_CasablancaHeavy.ttf" %}';
+    font-family: Vazirmatn;
+    src: url(../fonts/fonts/ttf/Vazirmatn-Medium.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
 }
+*{
+    font-family: Vazirmatn;
+} 
 
 body {
-    font-family: casablanca;
     margin: 0;
     padding: 0;
     direction: rtl;
-    background: linear-gradient(225deg, #c3a282,#e4d7cc);
-
+    background: linear-gradient(225deg, #c3a282, #e4d7cc);
 }
 .navbar {
-    position: fixed; /* Fixed position to follow scrolling */
+    position: fixed;
     top: 0;
     width: 100%;
     display: flex;
@@ -34,24 +38,38 @@ body {
     margin: 0 50px;
     position: relative;
 }
+.navbar ul li a:hover a {
+    color: black;
+}
 .navbar ul li a {
     color: white;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 .navbar ul li:hover .dropdown {
-    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.5s;
+    transition: all 120ms ease-in 100ms;
+    transform: translateY(15px);
 }
 .navbar ul li a i {
-    margin-left: 10px; /* فاصله بین آیکون و متن */
+    margin-left: 5px;
 }
 .dropdown {
-    display: none;
+    visibility: hidden;
     position: absolute;
     top: 90%;
     left: 1;
     background-color: #59310b;
     min-width: 170px;
     z-index: 2;
+    box-shadow: -1px 1px 20px 3px #fbf7f73d;
+    border-radius: 8px;
+    margin-top: 5px;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+    transition: all 120ms ease-in 80ms;
 }
 .dropdown a {
     display: block;
@@ -67,7 +85,7 @@ body {
     width: 100%;
     height: 800px;
     overflow: hidden;
-    margin-top: 50px; /* Margin to avoid overlap with fixed navbar */
+    margin-top: 50px; 
 }
 .slider {
     position: relative;
@@ -129,4 +147,26 @@ body {
     color: white;
     text-align: center;
     padding: 1rem;
+}
+#mostsale-section, #cake-section, #hot-section, #cold-section{
+    padding-top: 50px;
+    margin-top: -50px;
+    }
+a{
+    font-family: Vazirmatn !important;
+}
+#mostsale, #coldc, #hotc, #cake{
+    font-family: Vazirmatn !important;
+}
+.navbar ul li a:hover {
+    color:#c3a282
+}
+
+
+#menu:hover #menu-svg{
+    transform:rotate(90deg);
+}
+#menu-svg{
+    transition: all 0.5s;
+    transform:rotate(0deg);
 }

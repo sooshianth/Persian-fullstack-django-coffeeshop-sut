@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth import authenticate
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils.translation import gettext as _
 
@@ -20,12 +19,10 @@ class MemberManager(BaseUserManager):
     def create_superuser(self, username, first_name, last_name, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
-
         return self.create_user(username, first_name, last_name, password, **extra_fields)
 
 class Member(AbstractBaseUser, PermissionsMixin):
@@ -33,6 +30,7 @@ class Member(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(_("نام") ,max_length=255)
     last_name = models.CharField(_("نام خانوادگی"),max_length=255)
     phone_number = models.CharField(_("شماره همراه"),max_length=12, blank=True, null=True)
+    password = models.CharField(_("رمز عبور"), max_length=128)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     last_login = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     modified_date = models.DateTimeField(auto_now=True, null=True)
