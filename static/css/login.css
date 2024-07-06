@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Vazirmatn;
+    src: url(../fonts/fonts/ttf/Vazirmatn-Medium.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+*{
+    font-family: Vazirmatn;
+}  
 body {
     margin: 0;
     padding: 0;
@@ -7,22 +17,28 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    direction: rtl; /* Set the direction to RTL */
+    direction: rtl;
 }
 
+
 .login-container {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    position: absolute;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     width: 100%;
+    text-align:center;
+    z-index:2;
+    backdrop-filter:blur(6px);
+    box-shadow: -1px 1px 20px 0 black;
 }
 
 .login-form h2 {
     margin-bottom: 1.5rem;
     color: #333;
-    text-align: center; /* Center the header text */
+    text-align: center; 
 }
 
 .form-group {
@@ -32,12 +48,13 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    justify-content: flex-end; /* Align items to the right */
-    color: #555;
+    margin-top:1.5rem;
+    margin-right:0;
+    color: #472107;
 }
 
 .form-group input {
-    width: 100%;
+    width: 94%;
     padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -47,13 +64,37 @@ body {
     display: inline-block;
     width: auto;
 }
+.form-group input[type="text"]{
+    text-align: left;
+    direction: ltr;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.form-group input[type="password"]{
+    text-align: left;
+    direction: ltr;
+    margin-top:10px;
+    margin-bottom:10px;
+}
 
 .form-group label[for="remember-me"] {
     display: inline-block;
     margin-left: 0.5rem;
-    color: #555;
+    color: #e6ddd4;
 }
+.form-group label[for="password"]{
+    margin-right:0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color:#472107
+}
+.form-group label[for="username"]{
+    margin-right:0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color:#472107
 
+}
 button {
     width: 100%;
     padding: 0.75rem;
@@ -92,7 +133,7 @@ button:hover {
 
 .sign-up p {
     margin: 0;
-    color: #555;
+    color: #e6ddd4;
 }
 
 .sign-up a {
@@ -104,4 +145,54 @@ button:hover {
 
 .sign-up a:hover {
     color: #c8b177;
+}
+#enter{
+    display: inline-block;
+    position: relative;
+    font-size: 24px !important;
+    text-align: center;
+    color:#472107
+
+}
+#enter::before,
+#enter::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 90%;
+  height: 1px;
+  background-color: #c8b177;
+}
+
+#enter::before {
+  right: 100%;
+  margin-right: 10px;
+}
+
+#enter::after {
+  left: 100%;
+  margin-left: 10px;
+}
+.circle{
+    width:150px;
+    height:150px;
+    border-radius:100%;
+}
+#cir1{
+    background-image:linear-gradient(#ebe6dc, rgb(87, 59, 16));
+    margin-top: -468px;
+    margin-left:-208px;
+    position:absolute
+}
+#cir2{
+    background-image:linear-gradient( to right, #231d1d, rgb(225, 154, 22));
+    margin-top:82px;
+    margin-left: 451px;
+    position: absolute;
+}
+#cir3{
+    background-image:linear-gradient( to right, #e0ffc5, rgb(52, 33, 0));
+    margin-top:452px;
+    margin-left: -440px;
+    position: absolute;
 }

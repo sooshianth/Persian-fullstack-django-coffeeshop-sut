@@ -19,7 +19,7 @@ class OrderAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'price']
-    inlines = (ProductStorageInline,)
+    # inlines = (ProductStorageInline,)
 
 class StorageAdmin(admin.ModelAdmin):
     list_display = ['name', 'stock']

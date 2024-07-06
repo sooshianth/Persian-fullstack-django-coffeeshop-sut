@@ -1,11 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
 {% block content %}
-    
-    
 
 <div class="slider-container">
     <div class="slider">
@@ -21,52 +17,66 @@
     </div>
 </div>
 
-<div class="product-section">
-    <h2 id="mostsale">محصولات پرفروش</h2>
-    <div class="product-grid">
-        <img src="cold/cold1.jpg" alt="نوشیدنی سرد 1">
-        <img src="cold/cold2.jpg" alt="نوشیدنی سرد 2">
-        <img src="cold/cold3.jpg" alt="نوشیدنی سرد 3">
-        <img src="cold/cold4.jpg" alt="نوشیدنی سرد 4">
-        <img src="cold/cold5.jpg" alt="نوشیدنی سرد 5">
-        <img src="cold/cold6.jpg" alt="نوشیدنی سرد 6">
+<h1>محصولات پرفروش</h1>
+<div class="best-selling-products">
+    {% for product in products %}
+    <div class="product-card">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.price }} تومان</p>
+        <p>{{ product.description }}</p>
     </div>
+    {% endfor %}
 </div>
 
-<div class="product-section">
-    <h2 id="coldc">نوشیدنی سرد</h2>
-    <div class="product-grid">
-        <img src="cold/cold1.jpeg" alt="نوشیدنی سرد 1">
-        <img src="cold/cold2.jpeg" alt="نوشیدنی سرد 2">
-        <img src="cold/cold3.jpeg" alt="نوشیدنی سرد 3">
-        <img src="cold/cold4.jpeg" alt="نوشیدنی سرد 4">
-        <img src="cold/cold5.jpeg" alt="نوشیدنی سرد 5">
-        <img src="cold/cold6.jpeg" alt="نوشیدنی سرد 6">
-    </div>
-</div>
+<style>
+    h1 {
+        text-align: center;
+        margin: 20px 0;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
 
-<div class="product-section">
-    <h2 id="hotc">نوشیدنی گرم</h2>
-    <div class="product-grid">
-        <img src="hot/hot1.jpg" alt="نوشیدنی گرم 1">
-        <img src="hot/hot2.jpg" alt="نوشیدنی گرم 2">
-        <img src="hot/hot3.jpg" alt="نوشیدنی گرم 3">
-        <img src="hot/hot4.jpg" alt="نوشیدنی گرم 4">
-        <img src="hot/hot5.jpg" alt="نوشیدنی گرم 5">
-        <img src="hot/hot6.jpg" alt="نوشیدنی گرم 6">
-    </div>
-</div>
+    .best-selling-products {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+    }
 
-<div class="product-section">
-    <h2 id="cake">کیک</h2>
-    <div class="product-grid">
-        <img src="cake/cake1.jpeg" alt="کیک 1">
-        <img src="cake/cake2.jpeg" alt="کیک 2">
-        <img src="cake/cake3.jpeg" alt="کیک 3">
-        <img src="cake/cake4.jpeg" alt="کیک 4">
-        <img src="cake/cake5.jpeg" alt="کیک 5">
-        <img src="cake/cake6.jpeg" alt="کیک 6">
-    </div>
+    .product-card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        width: 220px;
+        transition: transform 0.2s;
+    }
+
+    .product-card img {
+        border-radius: 10px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .product-card h3 {
+        color: #333;
+    }
+
+    .product-card p {
+        color: #666;
+    }
+
+    .product-card:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="footer">
+    <p>All rights reserved for Tyrmo.co and the posse! &copy; 2024</p>
 </div>
 
 {% endblock content %}

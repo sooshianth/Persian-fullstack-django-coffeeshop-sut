@@ -9,12 +9,23 @@
     <div class="signup-container">
         <form class="signup-form", action="", method="POST">
             {% csrf_token %}
-            <h2>ثبت نام</h2>
+            <p id="regis"><b>ثبت‌نام</b></p>
             <div class="form-group">
                 {{form}}
             </div>
-            <button type="submit">ثبت نام</button>
+            <button type="submit">ثبت‌نام</button>
         </form>
+        <div class="login">
+            <p>حساب کاربری دارید؟ <a href="{% url 'login' %}">وارد شوید</a></p>
+        </div>
+    </div>
+    <div class="circle" id="cir1">
+    </div>
+
+    <div class="circle" id="cir2">
+    </div>
+    <div class="circle" id="cir3">
+    </div>
     </div>
     {% load static %}
     <link rel="stylesheet" href='{% static "css/signup.css" %}'>

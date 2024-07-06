@@ -9,9 +9,12 @@
     <div class="login-container">
         <form class="login-form" method='POST'>
             {% csrf_token %}
-            <h2>ورود</h2>
+            <p id="enter"><b>ورود یا ثبت‌نام</b></p>
             <div class="form-group">
-                {{form}}
+                {{"نام کاربری یا ایمیل: "}}
+                {{form.username}}
+                {{"رمز عبور: "}}
+                {{form.password}}
             </div>
             <div class="form-group">
                 <input type="checkbox" id="remember-me" name="remember-me">
@@ -19,12 +22,20 @@
             </div>
             <button type="submit">ورود</button>
             <div class="forgot-password">
-                <a href="#">رمز خود را فراموش کرده اید؟</a>
+                <a href="{% url 'forget_password'%}">رمز خود را فراموش کرده اید؟</a>
             </div>
             <div class="sign-up">
                 <p>حساب کاربری ندارید؟ <a href="{% url 'register' %}">ثبت نام</a></p>
             </div>
         </form>
+    </div>
+    <div class="circle" id="cir1">
+    </div>
+
+    <div class="circle" id="cir2">
+    </div>
+    <div class="circle" id="cir3">
+    </div>
     </div>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/login.css'%}">

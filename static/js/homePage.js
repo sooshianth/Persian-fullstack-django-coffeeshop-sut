@@ -17,6 +17,8 @@ function prevSlide() {
     showSlide(currentSlide);
 }
 
-// Initialize the slider
 showSlide(currentSlide);
-setInterval(nextSlide, 5000); // Change slide every 5 seconds
+setInterval(nextSlide, 5000); 
+
+const dropdown = document.querySelector('.dropdown');
+dropdown.classList.add('fade-out');
